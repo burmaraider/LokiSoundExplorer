@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace LokiSoundExplorer
 {
-
     public class MediaPlayer
     {
         System.Media.SoundPlayer soundPlayer;
@@ -176,14 +177,20 @@ namespace LokiSoundExplorer
                     w.sub_format = ms.ReadBytes(16);
                     w.buf = ms.ReadBytes((int)w.data_length);
 
-                    //waveFiles[i].wavChannels.Add(w);
                     wc.wavChannels.Add(w);
                 }
 
                 waveFiles.Add(wc);
             }
+            ms.Close();
+            return true; // return true for now i guess..
+        }
 
-            return true;
+        public bool ExtractSound(int index)
+        {
+
+
+            return true; //todo
         }
     }
 }
