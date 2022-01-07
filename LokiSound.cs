@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -186,11 +187,27 @@ namespace LokiSoundExplorer
             return true; // return true for now i guess..
         }
 
-        public bool ExtractSound(int index)
+        public byte[] ExtractSound(int index)
         {
+            MemoryStream ms = new MemoryStream();
+            BinaryWriter bw = new BinaryWriter(ms);
 
+            bw.Write(Encoding.ASCII.GetBytes("RIFF"));
+            bw.Write(BitConverter.GetBytes(waveFiles[index].wavChannels[0].data_length + 36));
+            bw.Write(Encoding.ASCII.GetBytes("WAVE"));
+            bw.Write(Encoding.ASCII.GetBytes("fmt "));
+            bw.Write(BitConverter.GetBytes((int)16));
+            bw.Write(BitConverter.GetBytes((short)1));
+            bw.Write(BitConverter.GetBytes((short)waveFiles[index].wavChannels[0].channel_count));
+            bw.Write(BitConverter.GetBytes(waveFiles[index].wavChannels[0].sample_rate));
+            bw.Write(BitConverter.GetBytes((int)(waveFiles[index].wavChannels[0].sample_rate * waveFiles[index].wavChannels[0].bit_depth / 8)));
+            bw.Write(BitConverter.GetBytes(waveFiles[index].wavChannels[0].block_align));
+            bw.Write(BitConverter.GetBytes(waveFiles[index].wavChannels[0].bit_depth));
+            bw.Write(Encoding.ASCII.GetBytes("data"));
+            bw.Write(BitConverter.GetBytes(waveFiles[index].wavChannels[0].data_length));
+            bw.Write(waveFiles[index].wavChannels[0].buf);
 
-            return true; //todo
+            return ms.ToArray();
         }
     }
 }

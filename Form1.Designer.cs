@@ -54,7 +54,6 @@ namespace LokiSoundExplorer
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detailGroupBox = new System.Windows.Forms.GroupBox();
-            this.offsetLabel = new System.Windows.Forms.Label();
             this.fileSizeLabel = new System.Windows.Forms.Label();
             this.lengthLabel = new System.Windows.Forms.Label();
             this.bitDepthLabel = new System.Windows.Forms.Label();
@@ -161,6 +160,7 @@ namespace LokiSoundExplorer
             this.extractAll.TabIndex = 2;
             this.extractAll.Text = "Extract All";
             this.extractAll.UseVisualStyleBackColor = true;
+            this.extractAll.Click += new System.EventHandler(this.extractAll_Click);
             // 
             // extractButton
             // 
@@ -172,12 +172,13 @@ namespace LokiSoundExplorer
             this.extractButton.TabIndex = 1;
             this.extractButton.Text = "Extract...";
             this.extractButton.UseVisualStyleBackColor = true;
+            this.extractButton.Click += new System.EventHandler(this.extractButton_Click);
             // 
             // playButton
             // 
             this.playButton.Enabled = false;
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(6, 44);
+            this.playButton.Location = new System.Drawing.Point(6, 42);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(284, 33);
             this.playButton.TabIndex = 0;
@@ -215,15 +216,16 @@ namespace LokiSoundExplorer
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // closeStripMenuItem
             // 
+            this.closeStripMenuItem.Enabled = false;
             this.closeStripMenuItem.Name = "closeStripMenuItem";
             this.closeStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.closeStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeStripMenuItem.Text = "&Close File";
             this.closeStripMenuItem.Click += new System.EventHandler(this.closeStripMenuItem_Click);
             // 
@@ -234,8 +236,9 @@ namespace LokiSoundExplorer
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "&Extract All";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -268,12 +271,12 @@ namespace LokiSoundExplorer
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // detailGroupBox
             // 
-            this.detailGroupBox.Controls.Add(this.offsetLabel);
             this.detailGroupBox.Controls.Add(this.fileSizeLabel);
             this.detailGroupBox.Controls.Add(this.lengthLabel);
             this.detailGroupBox.Controls.Add(this.bitDepthLabel);
@@ -285,15 +288,6 @@ namespace LokiSoundExplorer
             this.detailGroupBox.TabIndex = 3;
             this.detailGroupBox.TabStop = false;
             this.detailGroupBox.Text = "Detailed Info";
-            // 
-            // offsetLabel
-            // 
-            this.offsetLabel.AutoSize = true;
-            this.offsetLabel.Location = new System.Drawing.Point(161, 67);
-            this.offsetLabel.Name = "offsetLabel";
-            this.offsetLabel.Size = new System.Drawing.Size(38, 13);
-            this.offsetLabel.TabIndex = 4;
-            this.offsetLabel.Text = "Offset:";
             // 
             // fileSizeLabel
             // 
@@ -388,7 +382,6 @@ namespace LokiSoundExplorer
         private System.Windows.Forms.Label fileSizeLabel;
         private System.Windows.Forms.Label lengthLabel;
         private System.Windows.Forms.Label bitDepthLabel;
-        private System.Windows.Forms.Label offsetLabel;
         private System.Windows.Forms.ToolStripMenuItem closeStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
